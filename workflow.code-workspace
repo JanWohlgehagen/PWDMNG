@@ -1,0 +1,22 @@
+{
+  "folders": [
+    {
+      "path": "api"
+    },
+    {
+      "path": "frontend"
+    },
+    {
+      "name": "root",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "typescript.tsdk": "frontend/node_modules/typescript/lib"
+  },
+  "extensions": {
+    "recommendations": [
+      "abhijoybasak.nestjs-files"
+    ]
+  }
+}
