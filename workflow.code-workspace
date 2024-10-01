@@ -16,7 +16,13 @@
   },
   "extensions": {
     "recommendations": [
-      "abhijoybasak.nestjs-files"
+      "abhijoybasak.nestjs-files",
+      "johnpapa.angular2",
+      "ms-azuretools.vscode-docker",
+      "eamodio.gitlens",
+      "czfadmin.nestjs-tool",
+      "esbenp.prettier-vscode",
+      "vscode-icons-team.vscode-icons"
     ]
   }
 }
