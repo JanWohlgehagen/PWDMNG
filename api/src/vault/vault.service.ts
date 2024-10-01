@@ -25,13 +25,13 @@ export class VaultService {
     return decrypted.toString(CryptoJS.enc.Utf8);
   }
 
-  async storePassword(userId: number, website: string, username: string, password: string, key: string): Promise<Vault> {
+  async storePassword(userId: string, website: string, username: string, password: string, key: string): Promise<Vault> {
     const encryptedPassword = this.encryptPassword(password, key);
     const vaultEntry = this.vaultRepository.create({ user: { id: userId }, website, username, encryptedPassword });
     return this.vaultRepository.save(vaultEntry);
   }
 
-  async retrievePasswords(userId: number): Promise<Vault[]> {
+  async retrievePasswords(userId: string): Promise<Vault[]> {
     return this.vaultRepository.find({ where: { user: { id: userId } } });
   }
 }

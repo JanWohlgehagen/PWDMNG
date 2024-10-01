@@ -1,10 +1,11 @@
 import { Vault } from 'src/vault/entities/vault';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({ unique: true })
   username: string;
@@ -14,4 +15,8 @@ export class User {
 
   @OneToMany(() => Vault, (vault) => vault.user, { cascade: true })
   vaults: Vault[];
+
+  constructor(){
+    this.id = uuidv4();
+  }
 }
