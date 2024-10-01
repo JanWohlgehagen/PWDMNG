@@ -16,7 +16,7 @@ export class UsersService {
   }
 
   async create(username: string, password: string): Promise<User> {
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash password before saving
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash password before saving with work factor 10 - increase to make more resistant to bruteforce attacks.
     const user = this.usersRepository.create({ username, password: hashedPassword });
     console.log(user);
     return this.usersRepository.save(user);
