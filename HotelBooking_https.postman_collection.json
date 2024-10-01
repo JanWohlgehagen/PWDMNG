@@ -1,0 +1,940 @@
+{
+	"info": {
+		"_postman_id": "085b18f7-36f5-410d-93ee-0b9fdec6f41e",
+		"name": "HotelBooking_https",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23009648",
+		"_collection_link": "https://planetary-meadow-661597.postman.co/workspace/Hotel-Booking-API-Testing~80e58cee-b2bd-4328-b51c-4ef99287bf48/collection/34914162-085b18f7-36f5-410d-93ee-0b9fdec6f41e?action=share&source=collection_link&creator=23009648"
+	},
+	"item": [
+		{
+			"name": "rooms - Room 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Room 1\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/rooms",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rooms - Room 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Room 2\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/rooms",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rooms",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the response JSON",
+							"let jsonData = pm.response.json();",
+							"",
+							"// 1. Status Code Check",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// 2. Response Type is JSON",
+							"pm.test(\"Response is JSON\", function () {",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"// 3. Check Response Length",
+							"pm.test(\"Response length is 10\", function () {",
+							"    pm.expect(jsonData.length).to.greaterThan(0);",
+							"});",
+							"",
+							"// 4. Check Properties of All Objects",
+							"pm.test(\"All objects have correct keys\", function () {",
+							"    jsonData.forEach(function(room) {",
+							"        pm.expect(room).to.have.keys(\"id\", \"description\");",
+							"    });",
+							"});",
+							"",
+							"// 5. Check if IDs are Numbers",
+							"pm.test(\"All IDs are numbers\", function () {",
+							"    jsonData.forEach(function(room) {",
+							"        pm.expect(room.id).to.be.a(\"number\");",
+							"    });",
+							"});",
+							"",
+							"// 6. Check if Descriptions are Non-Empty Strings",
+							"pm.test(\"All descriptions are non-empty strings\", function () {",
+							"    jsonData.forEach(function(room) {",
+							"        pm.expect(room.description).to.be.a(\"string\").and.not.empty;",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/rooms",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rooms/0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response is json\", function () {",
+							"    pm.response.to.be.badRequest;",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response is JSON\", function () {",
+							"    pm.response.to.be.json;",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/rooms/0",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"rooms",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rooms/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the response JSON",
+							"let jsonData = pm.response.json();",
+							"",
+							"// 1. Status Code Check",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// 2. Response Type is JSON",
+							"pm.test(\"Response is JSON\", function () {",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"// 3. Check Properties of All Objects",
+							"pm.test(\"Return object have correct keys - id, description\", function () {",
+							"    pm.expect(jsonData).to.have.keys(\"id\", \"description\");",
+							"});",
+							"",
+							"// 4. Check if ID is Number",
+							"pm.test(\"ID is number\", function () {",
+							"    pm.expect(jsonData.id).to.be.a(\"number\");",
+							"});",
+							"",
+							"// 5. Check if Description is a Non-Empty Strings",
+							"pm.test(\"Descriptions is non-empty string\", function () {",
+							"    pm.expect(jsonData.description).to.be.a(\"string\").and.not.empty;",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/rooms/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"rooms",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bookings/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test: Status code is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Test: Response time is less than 500ms",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Test: Response body contains booking ID",
+							"pm.test(\"Response body contains booking ID\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('id');",
+							"});",
+							"",
+							"// Test: Booking ID is 2",
+							"pm.test(\"Booking ID is 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(2);",
+							"});",
+							"",
+							"// Test: Booking customer name is Jane Doe",
+							"pm.test(\"Booking customer name is Jane Doe\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.customer.name).to.eql(\"Jane Doe\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/Bookings/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Bookings",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bookings/2 FAIL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test: Response contains the validation error message",
+							"pm.test(\"Response contains validation error for 'id'\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.errors).to.have.property('id');",
+							"    pm.expect(jsonData.errors.id[0]).to.eql(\"The value 'fire' is not valid.\");",
+							"});",
+							"",
+							"// Test: Response contains a title",
+							"pm.test(\"Response contains a title\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('title');",
+							"    pm.expect(jsonData.title).to.eql(\"One or more validation errors occurred.\");",
+							"});",
+							"",
+							"// Test: Response contains a status code field",
+							"pm.test(\"Response contains status code field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData.status).to.eql(400);",
+							"});",
+							"",
+							"// Test: Response contains a trace ID",
+							"pm.test(\"Response contains a traceId\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('traceId');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/Bookings/fire",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Bookings",
+						"fire"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test: Status code is 201\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Test: Response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"startDate\": \"5024-03-07\",\n  \"endDate\": \"6024-03-06\",\n  \"customerId\": \"1\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/Bookings",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test: Status code is 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test: Response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"// Test: Response body contains an array\r",
+							"pm.test(\"Response body is an array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"// Test: First booking contains an ID\r",
+							"pm.test(\"First booking contains an ID\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0]).to.have.property('id');\r",
+							"});\r",
+							"\r",
+							"// Test: First booking's start date is correct\r",
+							"pm.test(\"First booking start date is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].startDate).to.eql(\"2024-09-28T00:00:00+02:00\");\r",
+							"});\r",
+							"\r",
+							"// Test: First booking's customer ID is correct\r",
+							"pm.test(\"First booking customer ID is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].customerId).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"// Test: First booking customer name is correct\r",
+							"pm.test(\"First booking customer name is John Smith\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].customer.name).to.eql(\"John Smith\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {},
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/Bookings",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the response JSON\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// 1. Status Code Check\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 2. Response Type is JSON\r",
+							"pm.test(\"Response is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"// 3. Check Response Length\r",
+							"pm.test(\"Response length is two\", function () {\r",
+							"    pm.expect(jsonData.length).to.eql(2);\r",
+							"});\r",
+							"\r",
+							"// 4. Check Properties of First Object\r",
+							"pm.test(\"First object has correct keys\", function () {\r",
+							"    pm.expect(jsonData[0]).to.have.keys(\"id\", \"name\", \"email\");\r",
+							"});\r",
+							"\r",
+							"// 5. Validate First Customer Data\r",
+							"pm.test(\"First customer data is valid\", function () {\r",
+							"    pm.expect(jsonData[0].id).to.eql(1);\r",
+							"    pm.expect(jsonData[0].name).to.eql(\"John Smith\");\r",
+							"    pm.expect(jsonData[0].email).to.eql(\"js@gmail.com\");\r",
+							"});\r",
+							"\r",
+							"// 6. Check if IDs are Numbers\r",
+							"pm.test(\"Customer IDs are numbers\", function () {\r",
+							"    jsonData.forEach(function(customer) {\r",
+							"        pm.expect(customer.id).to.be.a(\"number\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"// 7. Validate Email Format\r",
+							"pm.test(\"Emails are in valid format\", function () {\r",
+							"    jsonData.forEach(function(customer) {\r",
+							"        pm.expect(customer.email).to.match(/^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/);\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/Customers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookings/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 for successful deletion\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/bookings/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"bookings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookings/0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 for non-existent booking\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/bookings/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"bookings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookings/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test: Status code is 200\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"// Test: Response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 1,\r\n        \"startDate\": \"2024-09-28T00:00:00+02:00\",\r\n        \"endDate\": \"2024-10-12T00:00:00+02:00\",\r\n        \"isActive\": true,\r\n        \"customerId\": 1,\r\n        \"roomId\": 1,\r\n        \"customer\": {\r\n            \"id\": 1,\r\n            \"name\": \"John Smith\",\r\n            \"email\": \"js@gmail.com\"\r\n        },\r\n        \"room\": {\r\n            \"id\": 1,\r\n            \"description\": \"A\"\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/Bookings/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Bookings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jan\",\r\n    \"password\": \"123\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jan\",\r\n    \"password\": \"123\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store in vault google",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbiIsInN1YiI6MSwiaWF0IjoxNzI3NjkyNjM0LCJleHAiOjE3Mjc2OTYyMzR9.foC_COlNNTUo2Q4nZfH_Wzo3Uwam5U-_KmuZ5JHOnnI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"janToGoogle\",\r\n    \"password\": \"123+google\",\r\n    \"website\": \"www.google.com\",\r\n    \"key\": \"thisIsAnExampleKeyFromPostman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/vault/store",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vault",
+						"store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store in vault facebook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbiIsInN1YiI6MSwiaWF0IjoxNzI3NjkyNjM0LCJleHAiOjE3Mjc2OTYyMzR9.foC_COlNNTUo2Q4nZfH_Wzo3Uwam5U-_KmuZ5JHOnnI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"janToFacebook\",\r\n    \"password\": \"123+facebook\",\r\n    \"website\": \"www.facebook.com\",\r\n    \"key\": \"thisIsAnExampleKeyFromPostman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/vault/store",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vault",
+						"store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve vault",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbiIsInN1YiI6MSwiaWF0IjoxNzI3NjkyNjM0LCJleHAiOjE3Mjc2OTYyMzR9.foC_COlNNTUo2Q4nZfH_Wzo3Uwam5U-_KmuZ5JHOnnI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/vault/retrieve?userId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vault",
+						"retrieve"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
