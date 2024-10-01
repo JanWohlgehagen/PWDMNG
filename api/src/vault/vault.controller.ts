@@ -1,4 +1,11 @@
-import { Controller, Post, Body, UseGuards, Request, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Request,
+  Get,
+} from '@nestjs/common';
 
 import { VaultService } from './vault.service';
 import { JwtAuthGuard } from './vault.guard';
@@ -9,12 +16,14 @@ export class VaultController {
 
   @UseGuards(JwtAuthGuard)
   @Post('store')
-  async storePassword(
-    @Request() req,
-    @Body() body,
-  ) {
-    const { website, username, password, key } = body;
-    return this.vaultService.storePassword(req.user.userId, website, username, password, key);
+  async storePassword(@Request() req, @Body() body) {
+    const { website, username, password } = body;
+    return this.vaultService.storePassword(
+      req.user.userId,
+      website,
+      username,
+      password,
+    );
   }
 
   @UseGuards(JwtAuthGuard)
