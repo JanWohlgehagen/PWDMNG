@@ -13,6 +13,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column()
+  salt: string;
+
   @OneToMany(() => Vault, (vault) => vault.user, { cascade: true })
   vaults: Vault[];
 

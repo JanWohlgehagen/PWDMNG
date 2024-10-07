@@ -16,6 +16,9 @@ export class Vault {
   @Column()
   encryptedPassword: string;
 
+  @Column()
+  iv: string;
+
   @ManyToOne(() => User, (user) => user.vaults)
   user: User; // Reference to the user who owns this vault entry
 

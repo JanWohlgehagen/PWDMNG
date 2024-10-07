@@ -38,12 +38,14 @@ export class VaultService {
     website: string,
     username: string,
     password: string,
+    iv: string,
   ): Promise<Vault> {
     const vaultEntry = this.vaultRepository.create({
       user: { id: userId },
       website,
       username,
       encryptedPassword: password,
+      iv,
     });
     return this.vaultRepository.save(vaultEntry);
   }
