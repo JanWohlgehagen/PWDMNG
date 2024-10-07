@@ -1,0 +1,39 @@
+<div class="login-wrapper">
+    <div class="login-container">
+      <h2>Login</h2>
+  
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+  
+        <!-- Email -->
+        <div class="form-group">
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            ngModel 
+            required
+            placeholder="Email"
+            class="input-field"
+          />
+        </div>
+  
+        <!-- Password -->
+        <div class="form-group">
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            ngModel 
+            required
+            placeholder="Password"
+            class="input-field"
+          />
+        </div>
+  
+        <!-- Submit Button -->
+        <button type="submit" [disabled]="!loginForm.valid" class="submit-btn">Login</button>
+  
+        <p class="already-account">Don't have an account? <a [routerLink]="['/register']">Create here</a></p>
+      </form>
+    </div>
+</div>

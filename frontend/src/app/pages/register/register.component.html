@@ -1,0 +1,71 @@
+<div class="register-wrapper">
+  <div class="register-container">
+    <h2>Register</h2>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="register-form">
+      <!-- Email -->
+      <div class="form-group">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          ngModel
+          required
+          placeholder="Email"
+          class="input-field"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          ngModel
+          required
+          placeholder="Password"
+          class="input-field"
+          (input)="checkPasswordStrength(password)"
+          [(ngModel)]="password"
+        />
+      </div>
+
+      <!-- Password strength indicator -->
+      <div class="progress-bar-container">
+        <div
+          class="progress-bar"
+          [ngClass]="{
+            weak: strengthLevel === 1,
+            moderate: strengthLevel === 2,
+            strong: strengthLevel > 2
+          }"
+          [style.width]="strengthLevel * 33.3333334 + '%'"
+        ></div>
+      </div>
+      <p class="password-strength">{{ passwordStrength }}</p>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirmPassword"
+          ngModel
+          required
+          placeholder="Confirm Password"
+          class="input-field"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="!registerForm.valid" class="submit-btn">
+        Register
+      </button>
+
+      <p class="already-account">
+        Already have an account? <a [routerLink]="['/login']">Login here</a>
+      </p>
+    </form>
+  </div>
+</div>

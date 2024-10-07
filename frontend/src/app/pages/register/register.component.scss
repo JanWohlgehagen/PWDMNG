@@ -1,0 +1,139 @@
+$primary-color: #4a90e2;
+$secondary-color: #f5f7fa;
+$text-color: #333;
+$input-border-color: #dfe1e5;
+$button-hover-color: darken($primary-color, 10%);
+
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: $secondary-color;
+}
+
+.register-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 30px;
+    color: $text-color;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .register-form {
+    .form-group {
+      margin-bottom: 20px;
+
+      .input-field {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid $input-border-color;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          border-color: $primary-color;
+        }
+      }
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: $primary-color;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $button-hover-color;
+      }
+
+      &:disabled {
+        background-color: lighten($primary-color, 30%);
+        cursor: not-allowed;
+      }
+    }
+
+    .already-account {
+      margin-top: 20px;
+      font-size: 14px;
+      color: $text-color;
+
+      a {
+        color: $primary-color;
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+
+.register-wrapper {
+    .form-group {
+      position: relative;
+  
+      .hint-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 16px;
+        color: #888;
+  
+        &:hover {
+          color: #000; // Change color on hover
+        }
+      }
+    }
+  
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: #eee;
+      border-radius: 4px;
+      margin-top: 5px;
+  
+      .progress-bar {
+        height: 100%;
+        transition: width 0.3s ease;
+        border-radius: 4px;
+  
+        &.weak {
+          background-color: red; // Red for weak
+        }
+  
+        &.moderate {
+          background-color: yellow; // Yellow for moderate
+        }
+  
+        &.strong {
+          background-color: green; // Green for strong
+        }
+      }
+    }
+  
+    .password-strength {
+      margin-top: 5px;
+      font-weight: bold;
+    }
+  }
