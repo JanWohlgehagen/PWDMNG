@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router'; // Import RouterModule for routing
+import { AuthService } from '../../Services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,16 @@ import { RouterModule } from '@angular/router'; // Import RouterModule for routi
   styleUrls: ['./login.component.scss']
 })
 export default class LoginComponent {
+  email: string = '';
+  password: string = '';
+
+  constructor(private authService: AuthService) {
+
+  }
+
   // Login logic
   onSubmit() {
-    // Add login logic here
+
     console.log('Login form submitted');
   }
 }

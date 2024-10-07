@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router'; // Import RouterModule for routing
 import { CommonModule } from '@angular/common'; // Import CommonModule for ngClass
+import { AuthService } from '../../Services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,11 +12,15 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngCla
   styleUrls: ['./register.component.scss']
 })
 export default class RegisterComponent {
-  password: string = ''; // Initialize password property
-  passwordStrength: string = ''; // To hold the password strength
-  strengthLevel: number = 0; // To hold the strength level
+  constructor(private authService: AuthService) {}
 
-  // Method to check password strength
+  email: string = '';
+  password: string = '';
+
+  passwordStrength: string = '';
+  strengthLevel: number = 0;
+
+
   checkPasswordStrength(password: string): void {
     const lengthCriteria = password.length >= 8; // Minimum length
     const numberCriteria = /\d/.test(password); // At least one number
@@ -55,6 +60,7 @@ export default class RegisterComponent {
 
   // Method to handle form submission
   onSubmit() {
+    this.authService.registerUser(this.email, this.password)
     console.log('Registration form submitted');
   }
 }
