@@ -1,1 +1,41 @@
+@import "bootstrap/scss/bootstrap";
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #f8f9fa;
+  }
+  
+  h2 {
+    color: #343a40;
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-control {
+    border-radius: 5px;
+  }
+  
+  .text-success {
+    color: green;
+  }
+  
+  .text-warning {
+    color: orange;
+  }
+  
+  .text-danger {
+    color: red;
+  }
+  
+  .form-control {
+    border-radius: 5px;
+  }
+  
+  .btn {
+    border-radius: 5px;
+  }
+  
+  
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

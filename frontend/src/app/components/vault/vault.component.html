@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center">Password Vault</h2>
+            <form (ngSubmit)="storePassword()">
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <input [(ngModel)]="website" name="website" class="form-control" placeholder="Website" required>
+                </div>
+                <div class="col-md-4">
+                  <input [(ngModel)]="username" name="username" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="col-md-4">
+                  <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password" required>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-success w-100">Store Password</button>
+              </div>
+            </form>
+            <p class="text-success text-center mt-3" *ngIf="successMessage">{{ successMessage }}</p>
+            <p class="text-danger text-center mt-3" *ngIf="errorMessage">{{ errorMessage }}</p>
+            
+            <h3 class="mt-5 text-center">Stored Passwords</h3>
+            <table class="table table-striped mt-3">
+              <thead>
+                <tr>
+                  <th>Website</th>
+                  <th>Username</th>
+                  <th>Password</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let password of passwords">
+                  <td>{{ password.website }}</td>
+                  <td>{{ password.username }}</td>
+                  <td>{{ password.password }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

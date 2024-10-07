@@ -1,0 +1,68 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center">Register</h2>
+            <form (ngSubmit)="register()" #registerForm="ngForm">
+              
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input [(ngModel)]="username" name="username" id="username" class="form-control" placeholder="Choose a username" required>
+              </div>
+  
+              <div class="mb-3 position-relative">
+                <label for="password" class="form-label">
+                  Password
+                  <span class="hint-icon" tabindex="0">ⓘ
+                    <!-- Password criteria tooltip -->
+                    <span class="hint-text">
+                      <ul>
+                        <li>At least 8 characters long</li>
+                        <li>Contains at least one uppercase letter</li>
+                        <li>Contains at least one lowercase letter</li>
+                        <li>Contains at least one number</li>
+                        <li>Contains at least one special character</li>
+                      </ul>
+                    </span>
+                  </span>
+                </label>
+                <input type="password" [(ngModel)]="password" name="password" id="password" class="form-control"
+                       placeholder="Create a password" required minlength="8" #passwordField="ngModel"
+                       (ngModelChange)="checkPasswordStrength()">
+  
+                <!-- Password strength message -->
+                <div *ngIf="passwordStrengthMessage">
+                  <p [ngClass]="{
+                    'text-danger': passwordStrengthLevel === 'Weak',
+                    'text-warning': passwordStrengthLevel === 'Medium',
+                    'text-success': passwordStrengthLevel === 'Strong'
+                  }">{{ passwordStrengthMessage }}</p>
+                </div>
+              </div>
+  
+              <div class="mb-3">
+                <label for="passwordRepeat" class="form-label">Repeat Password</label>
+                <input type="password" [(ngModel)]="passwordRepeat" name="passwordRepeat" id="passwordRepeat" class="form-control" placeholder="Repeat your password" required>
+                <!-- Error message for password match -->
+                <div class="text-danger" *ngIf="passwordRepeat !== password && registerForm.submitted">
+                  Passwords do not match.
+                </div>
+              </div>
+  
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary w-100" [disabled]="!registerForm.form.valid || passwordRepeat !== password">Register</button>
+              </div>
+            </form>
+  
+            <p class="text-success text-center mt-3" *ngIf="successMessage">{{ successMessage }}</p>
+            <p class="text-danger text-center mt-3" *ngIf="errorMessage">{{ errorMessage }}</p>
+            <p class="text-center mt-3">
+              Already have an account? <a href="/login">Login here</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

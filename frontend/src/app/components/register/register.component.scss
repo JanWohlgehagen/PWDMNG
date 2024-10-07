@@ -1,0 +1,50 @@
+.hint-icon {
+    cursor: pointer;
+    position: relative;
+    font-size: 1rem;
+    color: #007bff;
+    margin-left: 5px;
+  }
+  
+  .hint-text {
+    display: none;
+    position: absolute;
+    left: 120%;
+    top: 0;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 220px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+  
+  .hint-icon:hover .hint-text, .hint-icon:focus .hint-text {
+    display: block;
+  }
+  
+  .hint-text ul {
+    padding-left: 20px;
+    margin: 0;
+  }
+  
+  .hint-text ul li {
+    list-style: none;
+  }
+  
+  .hint-text ul li:before {
+    content: "•";
+    color: #007bff;
+    margin-right: 5px;
+  }
+  
+  .form-control {
+    border-radius: 5px;
+  }
+  
+  .btn {
+    border-radius: 5px;
+  }
+  
