@@ -31,7 +31,7 @@ For registering, the application uses Bcrypt to hash the user password, Bcrypt i
 
 #### Login Flow
 
-![Login Flow](./assets/login-flow.png)
+
 
 
 ### Storing passwords
