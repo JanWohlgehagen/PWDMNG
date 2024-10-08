@@ -75,8 +75,7 @@ export default class VaultComponent implements OnInit {
         const encryptedPassword = this.authService.encryptString(
           salt,
           iv,
-          hash,
-          result.password
+          hash
         );
 
         const newVaultItem: IPostVaultItem = {

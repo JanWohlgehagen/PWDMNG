@@ -77,12 +77,7 @@ export class AuthService {
   }
 
   // Encrypt Function
-  encryptString(
-    salt: string,
-    iv: string,
-    hash: string,
-    stringToBeEncrypted: string
-  ): string {
+  encryptString(iv: string, hash: string, stringToBeEncrypted: string): string {
     // Create a key using the hash
     const key = CryptoJS.enc.Hex.parse(hash); // Convert hash string to WordArray
     const ivWordArray = CryptoJS.enc.Hex.parse(iv); // Convert IV from hex string to WordArray
