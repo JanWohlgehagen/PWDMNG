@@ -3,11 +3,20 @@ services:
     container_name: frontend
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.caddy
     ports:
       - "4200:80"
     depends_on:
       - postgres
+  # frontend:
+  #   container_name: frontend
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "4200:80"
+  #   depends_on:
+  #     - postgres
 
   api:
     container_name: api

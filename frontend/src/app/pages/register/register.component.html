@@ -4,13 +4,16 @@
 
     <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="register-form">
       <!-- Email -->
+      <p *ngIf="registrationErrorText" class="errorText">
+        {{ registrationErrorText }}
+      </p>
       <div class="form-group">
         <input
           type="email"
           id="email"
           name="email"
           ngModel
-           [(ngModel)]="email"
+          [(ngModel)]="email"
           required
           placeholder="Email"
           class="input-field"
@@ -24,7 +27,7 @@
           id="password"
           name="password"
           ngModel
-           [(ngModel)]="password"
+          [(ngModel)]="password"
           required
           placeholder="Password"
           class="input-field"

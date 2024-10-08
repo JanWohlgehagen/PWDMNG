@@ -1,25 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router'; // Import RouterModule for routing
-import { CommonModule } from '@angular/common'; // Import CommonModule for ngClass
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../../Services/auth/auth.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, RouterModule, CommonModule],  // Ensure CommonModule is included
+  imports: [FormsModule, RouterModule, CommonModule], // Ensure CommonModule is included
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
-export default class RegisterComponent {
-  constructor(private authService: AuthService) {}
+export default class RegisterComponent implements OnDestroy {
+  destroy$ = new Subject<void>();
 
   email: string = '';
   password: string = '';
+  registrationErrorText = '';
 
   passwordStrength: string = '';
   strengthLevel: number = 0;
 
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   checkPasswordStrength(password: string): void {
     const lengthCriteria = password.length >= 8; // Minimum length
@@ -60,7 +68,21 @@ export default class RegisterComponent {
 
   // Method to handle form submission
   onSubmit() {
-    this.authService.registerUser(this.email, this.password)
+    this.authService
+      .registerUser(this.email, this.password)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (response) => {
+          console.log('Registration successful:', response);
+          this.registrationErrorText = '';
+          this.router.navigate(['/login']);
+          return response;
+        },
+        (error) => {
+          console.error('Registration error:', error);
+          this.registrationErrorText = 'Registration failed. Please try again.';
+        }
+      );
     console.log('Registration form submitted');
   }
 }

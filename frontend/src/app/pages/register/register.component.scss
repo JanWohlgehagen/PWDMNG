@@ -86,54 +86,57 @@ $button-hover-color: darken($primary-color, 10%);
   }
 }
 
-
 .register-wrapper {
-    .form-group {
-      position: relative;
-  
-      .hint-icon {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        cursor: pointer;
-        font-size: 16px;
-        color: #888;
-  
-        &:hover {
-          color: #000; // Change color on hover
-        }
+  .form-group {
+    position: relative;
+
+    .hint-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 16px;
+      color: #888;
+
+      &:hover {
+        color: #000; // Change color on hover
       }
-    }
-  
-    .progress-bar-container {
-      width: 100%;
-      height: 8px;
-      background-color: #eee;
-      border-radius: 4px;
-      margin-top: 5px;
-  
-      .progress-bar {
-        height: 100%;
-        transition: width 0.3s ease;
-        border-radius: 4px;
-  
-        &.weak {
-          background-color: red; // Red for weak
-        }
-  
-        &.moderate {
-          background-color: yellow; // Yellow for moderate
-        }
-  
-        &.strong {
-          background-color: green; // Green for strong
-        }
-      }
-    }
-  
-    .password-strength {
-      margin-top: 5px;
-      font-weight: bold;
     }
   }
+
+  .progress-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    margin-top: 5px;
+
+    .progress-bar {
+      height: 100%;
+      transition: width 0.3s ease;
+      border-radius: 4px;
+
+      &.weak {
+        background-color: red; // Red for weak
+      }
+
+      &.moderate {
+        background-color: yellow; // Yellow for moderate
+      }
+
+      &.strong {
+        background-color: green; // Green for strong
+      }
+    }
+  }
+
+  .password-strength {
+    margin-top: 5px;
+    font-weight: bold;
+  }
+}
+.errorText {
+  font-weight: 700;
+  color: red;
+}
