@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-('');
-import * as CryptoJS from 'crypto-js';
 import { Vault } from './entities/vault';
 
 @Injectable()

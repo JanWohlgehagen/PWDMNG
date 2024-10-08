@@ -71,11 +71,10 @@ export default class VaultComponent implements OnInit {
       if (result) {
         const iv = window.crypto.getRandomValues(new Uint8Array(16)).toString();
         const hash = sessionStorage.getItem('hash') || '';
-        const salt = sessionStorage.getItem('salt') || '';
         const encryptedPassword = this.authService.encryptString(
-          salt,
           iv,
-          hash
+          hash,
+          result.password
         );
 
         const newVaultItem: IPostVaultItem = {
