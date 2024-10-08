@@ -39,4 +39,4 @@ The passwords that are stored in the backend are encrypted rather than hashed be
 
 In the frontend, the password is encrypted when creating a new password for the vault using AES with the user's hashed password as the encryption key. The password is hashed using Scrypt and a random salt is added. This encrypted password is what is passed to the backend.
 
-The hashed value of a user's password is saved in session storage, to limit the scope of persistence. This makes sure the key is flushed, when the browser is closed. When a user wants to view their vault password in plain text, the encrypted password is descrypted in the frontend, using the user's hashed password and the unique IV of that vault item.
+The hashed value of a user's password is saved in session storage, to limit the scope of persistence. This makes sure the key is flushed, when the browser is closed. When a user wants to view their vault password in plain text, the encrypted password is decrypted in the frontend using the user's hashed password and the unique IV of the vault item.
