@@ -33,7 +33,7 @@ $button-hover-color: darken($primary-color, 10%);
       margin-bottom: 20px;
 
       .input-field {
-        width: 100%;
+        width: 374px;
         padding: 12px;
         border-radius: 8px;
         border: 1px solid $input-border-color;
@@ -126,17 +126,49 @@ $button-hover-color: darken($primary-color, 10%);
       }
 
       &.strong {
-        background-color: green; // Green for strong
+        background-color: orange; // Green for strong
+      }
+
+      &.veryStrong {
+        background-color: green; // Blue for very strong
       }
     }
   }
 
   .password-strength {
-    margin-top: 5px;
-    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__classifier {
+      margin-top: 5px;
+    }
   }
 }
 .errorText {
   font-weight: 700;
   color: red;
+}
+
+.satisfied-criteria {
+  color: green;
+}
+
+.unsatisfied-criteria {
+  color: red;
+}
+
+.tips-wrapper {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  row-gap: 5px;
+  flex-direction: column;
+  text-align: start;
+  font-size: 14px;
+
+  &__tip-container {
+    display: flex;
+    row-gap: 5px;
+  }
 }
