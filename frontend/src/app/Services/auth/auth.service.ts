@@ -14,6 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   registerUser(username: string, password: string) {
+    //TODO the password should be hashed here as well (so hash here and on backend) to avoid plain text passwords to be transfered over the network.
     const salt = this.generateSalt();
     return this.http.post(this.apiUrl + 'register', {
       username,
@@ -23,7 +24,7 @@ export class AuthService {
   }
 
   signInUser(username: string, password: string): Observable<any> {
-    const salt = this.generateSalt();
+    //TODO the password should be hashed here as well (so hash here and on backend) to avoid plain text passwords to be transfered over the network.
     return this.http.post(this.apiUrl + 'login', { username, password });
   }
 
