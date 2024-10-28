@@ -16,14 +16,14 @@ export class VaultController {
 
   @UseGuards(JwtAuthGuard)
   @Post('store')
-  async storePassword(@Request() req, @Body() body) {
-    const { website, username, password, iv } = body;
+  async storeqqqPassword(@Request() req, @Body() body) {
+    const { website, username, encryptedPassword, iv } = body;
     return this.vaultService.storePassword(
       req.user.userId,
       website,
       username,
-      password,
-      iv
+      encryptedPassword,
+      iv,
     );
   }
 

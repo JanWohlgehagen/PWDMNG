@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Vault } from '../user/user.service';
+import { Observable } from 'rxjs';
+import { IPostVaultItem } from '../../pages/vault/vault.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class VaultService {
-  private apiUrl = 'http://localhost:3000/vault';
+  private apiUrl = 'http://localhost:3000/vault/';
 
   constructor(private http: HttpClient) {}
 
-  storePassword(website: string, username: string, password: string, key: string) {
-    return this.http.post(`${this.apiUrl}/store`, { website, username, password, key });
+  getVaultItems(userId: string): Observable<Vault[]> {
+    const params = new HttpParams().set('userId', userId);
+    const token = sessionStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Vault[]>(this.apiUrl + 'retrieve', {
+      params,
+      headers,
+    });
   }
 
-  retrievePasswords() {
-    return this.http.get(`${this.apiUrl}/retrieve`);
+  addVaultItem(item: IPostVaultItem): Observable<Vault> {
+    const token = sessionStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<Vault>(this.apiUrl + 'store', item, { headers });
   }
 }

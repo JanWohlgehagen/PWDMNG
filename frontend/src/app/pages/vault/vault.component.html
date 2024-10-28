@@ -1,1 +1,36 @@
-<p>vault works!</p>
+<div class="vault-container">
+  <h1>Your Vault Items</h1>
+  <p *ngIf="vaultItems.length === 0">No vault items, hit the New button!</p>
+  <button mat-raised-button color="primary" (click)="openDialog()">New</button>
+  <button mat-raised-button color="primary" (click)="signOut()">
+    Sign Out
+  </button>
+  <div class="vault-items">
+    <mat-card *ngFor="let item of vaultItems" class="vault-card">
+      <mat-card-header>
+        <mat-card-title>{{ item.website }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Username: {{ item.username }}</p>
+        <p *ngIf="item.password">Password: {{ item.password }}</p>
+        <p *ngIf="!item.password">Password: {{ item.encryptedPassword }}</p>
+        <button
+          *ngIf="!item.password"
+          mat-button
+          color="primary"
+          (click)="decryptPassword(item)"
+        >
+          View password
+        </button>
+        <button
+          *ngIf="item.password"
+          mat-button
+          color="primary"
+          (click)="hidePassword(item)"
+        >
+          Hide password
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

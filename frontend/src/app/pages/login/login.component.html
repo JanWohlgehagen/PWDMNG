@@ -1,41 +1,56 @@
 <div class="login-wrapper">
-    <div class="login-container">
-      <h2>Login</h2>
-  
-      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
-  
-        <!-- Email -->
-        <div class="form-group">
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            ngModel
-            [(ngModel)]="email"
-            required
-            placeholder="Email"
-            class="input-field"
-          />
-        </div>
-  
-        <!-- Password -->
-        <div class="form-group">
-          <input 
-            type="password" 
-            id="password" 
-            name="password" 
-            ngModel
-            [(ngModel)]="password"
-            required
-            placeholder="Password"
-            class="input-field"
-          />
-        </div>
-  
-        <!-- Submit Button -->
-        <button type="submit" [disabled]="!loginForm.valid" class="submit-btn">Login</button>
-  
-        <p class="already-account">Don't have an account? <a [routerLink]="['/register']">Create here</a></p>
-      </form>
-    </div>
+  <div class="login-container">
+    <!-- <div class="spinner-wrapper" *ngIf="loading"></div> -->
+    <h2>Login</h2>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+      <p *ngIf="loginErrorText" class="errorText">
+        {{ loginErrorText }}
+      </p>
+      <!-- Email -->
+      <div class="form-group">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          ngModel
+          [(ngModel)]="email"
+          required
+          placeholder="Email"
+          class="input-field"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          ngModel
+          [(ngModel)]="password"
+          required
+          placeholder="Password"
+          class="input-field"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        [disabled]="!loginForm.valid || loading"
+        class="submit-btn"
+      >
+        <ng-container *ngIf="loading; else loginText">
+          <!-- Replace with your spinner implementation -->
+          <div class="spinner"></div>
+        </ng-container>
+        <ng-template #loginText> Login </ng-template>
+      </button>
+
+      <p class="already-account">
+        Don't have an account? <a [routerLink]="['/register']">Create here</a>
+      </p>
+    </form>
+  </div>
 </div>

@@ -4,13 +4,16 @@
 
     <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="register-form">
       <!-- Email -->
+      <p *ngIf="registrationErrorText" class="errorText">
+        {{ registrationErrorText }}
+      </p>
       <div class="form-group">
         <input
           type="email"
           id="email"
           name="email"
           ngModel
-           [(ngModel)]="email"
+          [(ngModel)]="email"
           required
           placeholder="Email"
           class="input-field"
@@ -24,12 +27,26 @@
           id="password"
           name="password"
           ngModel
-           [(ngModel)]="password"
+          [(ngModel)]="password"
           required
           placeholder="Password"
           class="input-field"
           (input)="checkPasswordStrength(password)"
           [(ngModel)]="password"
+        />
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirmPassword"
+          ngModel
+          [(ngModel)]="confirmPassword"
+          required
+          placeholder="Confirm Password"
+          class="input-field"
         />
       </div>
 
@@ -40,28 +57,123 @@
           [ngClass]="{
             weak: strengthLevel === 1,
             moderate: strengthLevel === 2,
-            strong: strengthLevel > 2
+            strong: strengthLevel === 3,
+            veryStrong: strengthLevel > 3
           }"
-          [style.width]="strengthLevel * 33.3333334 + '%'"
+          [style.width]="strengthLevel * 20 + '%'"
         ></div>
       </div>
-      <p class="password-strength">{{ passwordStrength }}</p>
+      <div class="password-strength">
+        <p class="password-strength__classifier">{{ passwordStrength }}</p>
+        <mat-checkbox
+          [checked]="showPasswordTips"
+          (change)="showPasswordTips = !showPasswordTips"
+          >Show tips</mat-checkbox
+        >
+      </div>
 
-      <!-- Confirm Password -->
-      <div class="form-group">
-        <input
-          type="password"
-          id="confirm-password"
-          name="confirmPassword"
-          ngModel
-          required
-          placeholder="Confirm Password"
-          class="input-field"
-        />
+      <div class="tips-wrapper" *ngIf="showPasswordTips">
+        <div class="tips-wrapper__tip-container">
+          <mat-icon
+            fontIcon="done"
+            style="color: green"
+            *ngIf="numberCriteria"
+          ></mat-icon>
+          <mat-icon
+            fontIcon="close"
+            style="color: red"
+            *ngIf="!numberCriteria"
+          ></mat-icon>
+          <p
+            [ngClass]="
+              numberCriteria ? 'satisfied-criteria' : 'unsatisfied-criteria'
+            "
+          >
+            Your password should have at least 1 number.
+          </p>
+        </div>
+        <div class="tips-wrapper__tip-container">
+          <mat-icon
+            fontIcon="done"
+            style="color: green"
+            *ngIf="uppercaseCriteria"
+          ></mat-icon>
+          <mat-icon
+            fontIcon="close"
+            style="color: red"
+            *ngIf="!uppercaseCriteria"
+          ></mat-icon>
+          <p
+            [ngClass]="
+              uppercaseCriteria ? 'satisfied-criteria' : 'unsatisfied-criteria'
+            "
+          >
+            Your password should have at least 1 uppercase character.
+          </p>
+        </div>
+        <div class="tips-wrapper__tip-container">
+          <mat-icon
+            fontIcon="done"
+            style="color: green"
+            *ngIf="lowercaseCriteria"
+          ></mat-icon>
+          <mat-icon
+            fontIcon="close"
+            style="color: red"
+            *ngIf="!lowercaseCriteria"
+          ></mat-icon>
+          <p
+            [ngClass]="
+              lowercaseCriteria ? 'satisfied-criteria' : 'unsatisfied-criteria'
+            "
+          >
+            Your password should have at least 1 lowercase character.
+          </p>
+        </div>
+        <div class="tips-wrapper__tip-container">
+          <mat-icon
+            fontIcon="done"
+            style="color: green"
+            *ngIf="lengthCriteria"
+          ></mat-icon>
+          <mat-icon
+            fontIcon="close"
+            style="color: red"
+            *ngIf="!lengthCriteria"
+          ></mat-icon>
+          <p
+            [ngClass]="
+              lengthCriteria ? 'satisfied-criteria' : 'unsatisfied-criteria'
+            "
+          >
+            Your password should have at least 8 characters.
+          </p>
+        </div>
+        <div class="tips-wrapper__tip-container">
+          <mat-icon
+            fontIcon="done"
+            style="color: green"
+            *ngIf="specialCharCriteria"
+          ></mat-icon>
+          <mat-icon
+            fontIcon="close"
+            style="color: red"
+            *ngIf="!specialCharCriteria"
+          ></mat-icon>
+          <p
+            [ngClass]="
+              specialCharCriteria
+                ? 'satisfied-criteria'
+                : 'unsatisfied-criteria'
+            "
+          >
+            Your password should have at least 1 special character(#?/!).
+          </p>
+        </div>
       </div>
 
       <!-- Submit Button -->
-      <button type="submit" [disabled]="!registerForm.valid" class="submit-btn">
+      <button type="submit" [disabled]="!getFormStatus" class="submit-btn">
         Register
       </button>
 
